@@ -1,0 +1,15 @@
+{
+    "kimi":"",
+    "iat":{
+        "APPID":"",
+        "APISecret":"",
+        "APIKey":""
+    },
+    "spark":{
+        "SPARKAI_URL":"wss://spark-api.xf-yun.com/v3.5/chat",
+        "SPARKAI_APP_ID":"",
+        "SPARKAI_API_SECRET":"",
+        "SPARKAI_API_KEY":"",
+        "SPARKAI_DOMAIN":"generalv3.5"
+    }
+}
