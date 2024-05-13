@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WELearn Test AI Helper ; 使用讯飞语音听写配合AI获得welearn听力测试的答案
 // @namespace    https://github.com/mcitem
-// @version      1.0
+// @version      1.1
 // @description  使用讯飞语音听写配合AI获得welearn听力测试的答案; 这是一个用于获取题目数据的脚本，需要配合项目中的python使用，项目地址https://github.com/mcitem/WELearnTestAIHelper
 // @author       MCitem
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=wetest.sflep.com
@@ -106,11 +106,12 @@
         
     }
     console.log(data_itemDivs);
-    textarea.textContent = JSON.stringify(data_itemDivs,null,2)
+    
     let copy = {
         "all_links":all_links,
         "data":data_itemDivs
     }
+    textarea.textContent = JSON.stringify(copy,null,2)
     navigator.clipboard.writeText(JSON.stringify(copy,null,2)).then(function() {
         console.log('Async: Copying to clipboard was successful!');
     })
