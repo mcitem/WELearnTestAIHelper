@@ -1,5 +1,6 @@
 from utils.data import data
-baseURL =  'https://wetestoss.sflep.com/resource/sound/'
+from utils.config import config
+baseURL = config['baseURL']
 import wget
 from os import makedirs as mkdir
 import os
