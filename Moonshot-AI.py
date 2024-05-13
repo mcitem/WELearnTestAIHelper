@@ -11,7 +11,7 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "system",
-            "content": "请给我下面英文题目最有可能的答案，不需要解释过程",
+            "content": "请给我下面英文题目最有可能的答案，不需要解释过程, 给我包括答案选项的内容",
         },
         {"role": "user", "content": f.read()},
     ],
@@ -28,4 +28,4 @@ for idx, chunk in enumerate(response):
     collected_messages.append(chunk_message)  # save the message
     print(f"#{idx}: {''.join([m.content for m in collected_messages])}")
     
-print(f"Full conversation received: {''.join([m.content for m in collected_messages])}")
+print(f"\n\n\n {''.join([m.content for m in collected_messages])}")
