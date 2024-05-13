@@ -14,12 +14,22 @@
 ## 兼容性
 - 答案正确率受语音听写识别和AI阅读理解能力影响，输出题目文本可能存在错误，建议自行阅读输出的题目文本，斟酌作答
 
-用户脚本`index.js`目前只为`wetest.sflep.com/test`这个新版考试界面做了适配，且只去获取`PartA`的听力题选择题的的题目数据
+用户脚本`index.js`目前且只去获取`PartA`的听力题选择题的的题目数据
 
-而，还有一个考试域名`welearn.sflep.com/test/` 的html类名不太相同，因为用不上所以没有去适配（
+对于不同测试域名，需要修改`config.json`中`baseURL`的键值
+
+`wetest.sflep.com` (默认)
+```
+https://wetestoss.sflep.com/resource/sound/
+```
+`welearn.sflep.com`
+```
+https://courseres.sflep.com/Test/ItemRes/sound/
+```
+
 
 ## FFmpeg
-如果在用户脚本能够方便、兼容地将 MP3 转为 16k pcm数据，且提交讯飞语音听写能够正常得到内容的话，那么就不在需要python了 
+如果在用户脚本能够方便、兼容地，快速地将 MP3 转为 16k pcm数据，且提交讯飞语音听写能够正常得到内容的话，那么就不在需要python了 
 <br/><br/><br/>
 比如在用户脚本中运行ffmpeg.wasm（ 这好像并不现实，也无法cdn引入和生成web worker
 
@@ -59,15 +69,17 @@ pip install --upgrade spark_ai_python
 ）也可以手动复制output.txt的内容手动扔给ai
 
 ## 使用
+- 请自行注册 [讯飞语音**听写**](https://console.xfyun.cn/services/iat) 并获得接口调用所需的认证字段
 - 配置config.json
 
+     - baseURL 根据测试域名选择 见本文兼容性处
      - iat配置项为 讯飞语音**听写**
      - kimi配置项为 Moonshot AI
      - spark配置项为 讯飞星火大模型
     
-     ）也可以手动复制文本题目输出喂给ai,只有iat是必填的
+     ）也可以手动复制文本题目输出喂给ai,只有baseURL、iat是必填的
 
-将`index.js`加载到`scriptcat`或`tampermonkey`中
+将`index.js`加载到 [ScriptCat](https://scriptcat.org/zh-CN/script-show-page/1825/) 或 [TamperMonkey](https://greasyfork.org/zh-CN/scripts/494802-welearn-test-ai-helper-%E4%BD%BF%E7%94%A8%E8%AE%AF%E9%A3%9E%E8%AF%AD%E9%9F%B3%E5%90%AC%E5%86%99%E9%85%8D%E5%90%88ai%E8%8E%B7%E5%BE%97welearn%E5%90%AC%E5%8A%9B%E6%B5%8B%E8%AF%95%E7%9A%84%E7%AD%94%E6%A1%88) 中
 - 打开考试界面 `index.js`会等待4秒以等待试卷加载 
 
     ）如果4秒还不够加载，请直接修改`index.js`代码
